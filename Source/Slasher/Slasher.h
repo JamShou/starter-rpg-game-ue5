@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 
-#define DRAW_SPHERE(Location) if (GetWorld()) DrawDebugSphere(GetWorld(), Location, 25.f, 12, FColor::Magenta, true);
+#define DRAW_SPHERE(Location) if (GetWorld()) DrawDebugSphere(GetWorld(), Location, 25.f, 12, FColor::Magenta, false, 0.f);
+#define DRAW_DEBUG_FORWARD_LINE(Location) if (GetWorld()) DrawDebugLine(GetWorld(), Location, Location + GetActorForwardVector() * 100.f, FColor::Red, false);
+#define DRAW_DEBUG_ORIGIN_LINE(Location) if (GetWorld()) DrawDebugLine(GetWorld(), Location, FVector::ZeroVector, FColor::Blue, false);
 
 
