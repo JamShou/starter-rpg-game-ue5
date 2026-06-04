@@ -25,10 +25,14 @@ void AItem::Tick(float DeltaTime)
 	// AddActorWorldOffset(GetActorForwardVector() * MovementSpeed * DeltaTime);
 
 	UWorld* World = GetWorld();
+	
+	FVector Forward=  GetActorForwardVector();
 
 	if (World)
 	{
 		const FVector Location = GetActorLocation();
+		
+		DRAW_POINT(Location);
 		DRAW_DEBUG_FORWARD_LINE(Location);
 		DRAW_DEBUG_ORIGIN_LINE(Location);
 		DRAW_SPHERE(Location);
