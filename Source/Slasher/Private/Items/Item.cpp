@@ -32,8 +32,7 @@ void AItem::Tick(float DeltaTime)
 	{
 		const FVector Location = GetActorLocation();
 		
-		DRAW_POINT(Location);
-		DRAW_DEBUG_FORWARD_LINE(Location);
+		DRAW_VECTOR(Location, Forward);
 		DRAW_DEBUG_ORIGIN_LINE(Location);
 		DRAW_SPHERE(Location);
 	}
