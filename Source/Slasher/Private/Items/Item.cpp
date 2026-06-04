@@ -2,8 +2,7 @@
 
 
 #include "Items/Item.h"
-#include "DrawDebugHelpers.h"
-#include "Slasher/Slasher.h"
+#include "Slasher/DebugMacros.h"
 
 // Sets default values
 AItem::AItem()
