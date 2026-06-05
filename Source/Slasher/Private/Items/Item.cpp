@@ -1,7 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Items/Item.h"
+
+#include "BlendSpaceAnalysis.h"
+#include "ViewportInteractionTypes.h"
 #include "Slasher/DebugMacros.h"
 
 // Sets default values
@@ -18,22 +20,18 @@ void AItem::BeginPlay()
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	//Automatically move forward
-	// const float MovementSpeed = 50.f;
-	// AddActorWorldOffset(GetActorForwardVector() * MovementSpeed * DeltaTime);
-
 	UWorld* World = GetWorld();
-	
 	FVector Forward=  GetActorForwardVector();
-
+	
+	RunningTime += DeltaTime;
+	float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
+	AddActorWorldOffset(FVector(0,0,DeltaZ));
+	
 	if (World)
 	{
 		const FVector Location = GetActorLocation();
-		
-		DRAW_VECTOR(Location, Forward);
-		DRAW_DEBUG_ORIGIN_LINE(Location);
-		DRAW_SPHERE(Location);
+		DRAW_SPHERE_SingleFrame(Location);
+		DRAW_VECTOR_SingleFrame(Location, Location + GetActorForwardVector());
 	}
 
 	// UE_LOG(LogTemp, Log, TEXT("DeltaTime: %f"), DeltaTime);
