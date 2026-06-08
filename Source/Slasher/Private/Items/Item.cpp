@@ -15,6 +15,20 @@ AItem::AItem()
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	int32 averageInt = Avg<int32>(1,3);
+	UE_LOG(LogTemp,Warning, TEXT("Avg of 1 and 3 is: %d"), averageInt);
+	
+}
+
+float AItem::TransformedSin()
+{
+	return Amplitude * FMath::Sin(RunningTime * TimeConstant);
+}
+
+float AItem::TransformedCosin()
+{
+	return Amplitude * FMath::Cos(RunningTime * TimeConstant);
 }
 
 void AItem::Tick(float DeltaTime)
@@ -24,7 +38,7 @@ void AItem::Tick(float DeltaTime)
 	FVector Forward=  GetActorForwardVector();
 	
 	RunningTime += DeltaTime;
-	float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
+	float DeltaZ = TransformedSin();
 	AddActorWorldOffset(FVector(0,0,DeltaZ));
 	
 	if (World)

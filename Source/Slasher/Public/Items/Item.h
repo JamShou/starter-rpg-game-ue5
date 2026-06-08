@@ -14,16 +14,32 @@ class SLASHER_API AItem : public AActor
 public:
 	AItem();
 	virtual void Tick(float DeltaTime) override;
+
 protected:
 	virtual void BeginPlay() override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float Amplitude = 0.25f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float TimeConstant = 5.f;
+
+	UFUNCTION(BlueprintPure)
+	float TransformedSin();
+
+	UFUNCTION(BlueprintPure)
+	float TransformedCosin();
+
+	template <typename T>
+	T Avg(T First, T Second);
+
 private:
-	
 	UPROPERTY(VisibleAnywhere)
 	float RunningTime;
-	
-	UPROPERTY(EditAnywhere)
-	float Amplitude = 0.25f;
-	
-	UPROPERTY(EditAnywhere)
-	float TimeConstant = 5.f;
 };
+
+template <typename T>
+inline T AItem::Avg(T First, T Second)
+{
+	return (First + Second) / 2;
+}
