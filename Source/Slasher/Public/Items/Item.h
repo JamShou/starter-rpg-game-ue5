@@ -36,6 +36,9 @@ protected:
 private:
 	UPROPERTY(VisibleAnywhere)
 	float RunningTime;
+	
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* ItemMesh;
 };
 
 template <typename T>
