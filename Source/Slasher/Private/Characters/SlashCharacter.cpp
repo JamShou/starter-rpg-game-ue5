@@ -1,7 +1,9 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
-#include "Characters/SlashCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "GroomComponent.h"
+
+#include "Characters/SlashCharacter.h"
 
 ASlashCharacter::ASlashCharacter()
 {
@@ -20,6 +22,14 @@ ASlashCharacter::ASlashCharacter()
 
 	ViewCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("ViewCamera"));
 	ViewCamera->SetupAttachment(CameraBoom);
+	
+	Hair = CreateDefaultSubobject<UGroomComponent>(TEXT("Hair"));
+	Hair->SetupAttachment(GetMesh());
+	Hair->AttachmentName = FString(TEXT("head"));
+	
+	Eyebrows=  CreateDefaultSubobject<UGroomComponent>(TEXT("Eyebrows"));
+	Eyebrows->SetupAttachment(GetMesh());
+	Eyebrows->AttachmentName = FString(TEXT("head"));
 }
 
 void ASlashCharacter::BeginPlay()

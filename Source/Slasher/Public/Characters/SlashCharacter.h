@@ -1,12 +1,13 @@
 
 #pragma once
 
-class UCameraComponent;
-class USpringArmComponent;
-
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "SlashCharacter.generated.h"
+
+class UCameraComponent;
+class USpringArmComponent;
+class UGroomComponent;
 
 UCLASS()
 class SLASHER_API ASlashCharacter : public ACharacter
@@ -32,4 +33,12 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* ViewCamera;
+	
+	UPROPERTY(VisibleAnywhere, Category = Hair)
+	UGroomComponent* Hair;
+	
+	UPROPERTY(VisibleAnywhere, Category = Hair)
+	UGroomComponent* Eyebrows;
+	
+	
 };
