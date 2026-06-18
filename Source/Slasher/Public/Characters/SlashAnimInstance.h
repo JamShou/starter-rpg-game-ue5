@@ -6,9 +6,6 @@
 #include "Animation/AnimInstance.h"
 #include "SlashAnimInstance.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class SLASHER_API USlashAnimInstance : public UAnimInstance
 {
