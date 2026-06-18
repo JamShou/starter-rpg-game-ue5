@@ -18,8 +18,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1bd4f31-d086-4c74-9a6e-854b34cd20c1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Content/MSPresets/MS_Foliage_Material/MaterialFunctions/Foliage/MF_DistanceBasedOpacity.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Maps/Minimal_Default.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Minimal_Default.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_Character.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_Character.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Slasher/Private/Characters/SlashCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Slasher/Private/Characters/SlashCharacter.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +35,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "JamShou"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/JamShou/starter-rpg-game-ue5.git",
+    "accountId": "a2f42957-38af-439e-aae6-01c55d843372"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../Epic Games/UE_5.5/Engine/Source/Programs/Shared/EpicGames.Build/System/EnumeratePlugins.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Epic Games/UE_5.5/Engine/Source/Programs/UnrealBuildTool/System/Plugins.cs" root0="FORCE_HIGHLIGHTING" />
@@ -134,6 +146,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "feature/ue5-first-project",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -252,6 +265,7 @@
       <workItem from="1781064322838" duration="605000" />
       <workItem from="1781148440848" duration="6917000" />
       <workItem from="1781226397674" duration="4560000" />
+      <workItem from="1781760276190" duration="603000" />
     </task>
     <task id="LOCAL-00001" summary="UE Debug Chapter">
       <option name="closed" value="true" />
