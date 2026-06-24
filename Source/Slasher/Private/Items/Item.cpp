@@ -40,7 +40,7 @@ void AItem::Tick(float DeltaTime)
 	RunningTime += DeltaTime;
 	float DeltaZ = TransformedSin();
 	AddActorWorldOffset(FVector(0,0,DeltaZ));
-
+	
 	FRotator DeltaRotation(0.f, 30.f * DeltaTime, 0.f);
 	AddActorLocalRotation(DeltaRotation);
 }

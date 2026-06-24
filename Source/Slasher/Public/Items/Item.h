@@ -33,12 +33,12 @@ protected:
 	template <typename T>
 	T Avg(T First, T Second);
 
-private:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UStaticMeshComponent* ItemMesh;
+
 	UPROPERTY(VisibleAnywhere)
 	float RunningTime;
 	
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* ItemMesh;
 };
 
 template <typename T>
