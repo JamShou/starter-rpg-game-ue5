@@ -2,6 +2,8 @@
 
 
 #include "Items/Weapons/Weapon.h"
+#include "Characters/SlashCharacter.h"
+
 
 void AWeapon::Tick(float DeltaTime)
 {
@@ -19,4 +21,23 @@ void AWeapon::Tick(float DeltaTime)
 	FRotator DeltaRotation(0.f, 30.f * DeltaTime, 0.f);
 	AddActorLocalRotation(DeltaRotation);
 }
+
+void AWeapon::Equip(USceneComponent* InParent, FName InSocketName)
+{
+	FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
+	ItemMesh->AttachToComponent(InParent, TransformRules, InSocketName);
+}
+void AWeapon::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	Super::OnSphereOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
+
+}
+
+void AWeapon::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
+
+}
+
+
 

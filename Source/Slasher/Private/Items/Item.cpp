@@ -3,6 +3,7 @@
 #include "BlendSpaceAnalysis.h"
 #include "ViewportInteractionTypes.h"
 #include "Slasher/DebugMacros.h"
+#include "Characters/SlashCharacter.h"
 
 AItem::AItem()
 {
@@ -30,6 +31,26 @@ float AItem::TransformedCosin()
 {
 	return Amplitude * FMath::Cos(RunningTime * TimeConstant);
 }
+
+void AItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
+	if (SlashCharacter)
+	{
+		SlashCharacter->SetOverlappingItem(this);
+	}
+}
+
+void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
+	if (SlashCharacter)
+	{
+		SlashCharacter->SetOverlappingItem(nullptr);
+	}
+}
+
+
 
 void AItem::Tick(float DeltaTime)
 {
