@@ -8,6 +8,14 @@
 class UCameraComponent;
 class USpringArmComponent;
 class UGroomComponent;
+class AItem;
+
+enum class ECharacterState
+{
+	ECS_Unequipped,
+	ECS_EquippedOneHandedWeapon,
+	ECS_EquippedTwoHandedWeapon
+};
 
 UCLASS()
 class SLASHER_API ASlashCharacter : public ACharacter
@@ -26,8 +34,12 @@ protected:
 	void MoveRight(float Value);
 	void Turn(float Value);
 	void LookUp(float Value);
+	void EKeyPressed();
 	
 private:
+	
+	ECharacterState State = ECharacterState::ECS_Unequipped;
+	
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* CameraBoom;
 	
@@ -40,5 +52,10 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = Hair)
 	UGroomComponent* Eyebrows;
 	
+	UPROPERTY(VisibleInstanceOnly)
+	AItem* OverlappingItem;
+	
+public: 
+	FORCEINLINE void SetOverlappingItem(AItem* Item) {OverlappingItem = Item;}
 	
 };

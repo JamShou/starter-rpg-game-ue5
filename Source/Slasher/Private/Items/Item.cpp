@@ -1,24 +1,28 @@
-#include "Items/Item.h"
+// Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BlendSpaceAnalysis.h"
-#include "ViewportInteractionTypes.h"
+
+#include "Items/Item.h"
 #include "Slasher/DebugMacros.h"
+#include "Components/SphereComponent.h"
+#include "Characters/SlashCharacter.h"
 
 AItem::AItem()
 {
 	PrimaryActorTick.bCanEverTick = true;
-	
+
 	ItemMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ItemMeshComponent"));
 	RootComponent = ItemMesh;
+
+	SphereCPP = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere"));
+	SphereCPP->SetupAttachment(GetRootComponent());
 }
 
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	int32 averageInt = Avg<int32>(1,3);
-	UE_LOG(LogTemp,Warning, TEXT("Avg of 1 and 3 is: %d"), averageInt);
-	
+
+	SphereCPP->OnComponentBeginOverlap.AddDynamic(this, &AItem::OnSphereOverlap);
+	SphereCPP->OnComponentEndOverlap.AddDynamic(this, &AItem::OnSphereEndOverlap);
 }
 
 float AItem::TransformedSin()
@@ -26,19 +30,31 @@ float AItem::TransformedSin()
 	return Amplitude * FMath::Sin(RunningTime * TimeConstant);
 }
 
-float AItem::TransformedCosin()
+float AItem::TransformedCos()
 {
 	return Amplitude * FMath::Cos(RunningTime * TimeConstant);
+}
+
+void AItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
+	if (SlashCharacter)
+	{
+		SlashCharacter->SetOverlappingItem(this);
+	}
+}
+
+void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
+	if (SlashCharacter)
+	{
+		SlashCharacter->SetOverlappingItem(nullptr);
+	}
 }
 
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	UWorld* World = GetWorld();
-	FVector Forward=  GetActorForwardVector();
-	
 	RunningTime += DeltaTime;
-	float DeltaZ = TransformedSin();
-	AddActorWorldOffset(FVector(0,0,DeltaZ));
-
 }
