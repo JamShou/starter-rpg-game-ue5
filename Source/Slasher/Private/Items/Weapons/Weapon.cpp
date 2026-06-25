@@ -4,29 +4,12 @@
 #include "Items/Weapons/Weapon.h"
 #include "Characters/SlashCharacter.h"
 
-
-void AWeapon::Tick(float DeltaTime)
-{
-	AActor::Tick(DeltaTime);
-
-	if (IsEquipped)
-	{
-		return;
-	}
-
-	RunningTime += DeltaTime;
-	float DeltaZ = TransformedSin();
-	AddActorWorldOffset(FVector(0,0,DeltaZ));
-	
-	FRotator DeltaRotation(0.f, 30.f * DeltaTime, 0.f);
-	AddActorLocalRotation(DeltaRotation);
-}
-
 void AWeapon::Equip(USceneComponent* InParent, FName InSocketName)
 {
 	FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
 	ItemMesh->AttachToComponent(InParent, TransformRules, InSocketName);
 }
+
 void AWeapon::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	Super::OnSphereOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
@@ -38,6 +21,3 @@ void AWeapon::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActo
 	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
 
 }
-
-
-

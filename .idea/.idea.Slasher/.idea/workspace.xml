@@ -18,8 +18,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1bd4f31-d086-4c74-9a6e-854b34cd20c1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_Character.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Characters/BP_Character.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Slasher/Private/Characters/SlashCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Slasher/Private/Characters/SlashCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Slasher/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Slasher/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/BP_Item.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Items/Weapons/BP_Weapon.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/Minimal_Default.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Minimal_Default.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/StarterContent/Architecture/Floor_400x400.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Slasher/Private/Items/Item.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Slasher/Private/Items/Item.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Slasher/Private/Items/Weapons/Weapon.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Slasher/Private/Items/Weapons/Weapon.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Slasher/Public/Items/Item.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Slasher/Public/Items/Item.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Slasher/Public/Items/Weapons/Weapon.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Slasher/Public/Items/Weapons/Weapon.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,6 +275,8 @@
       <workItem from="1781226397674" duration="4560000" />
       <workItem from="1781760276190" duration="603000" />
       <workItem from="1782264260568" duration="2000" />
+      <workItem from="1782366661974" duration="6000" />
+      <workItem from="1782366973742" duration="506000" />
     </task>
     <task id="LOCAL-00001" summary="UE Debug Chapter">
       <option name="closed" value="true" />
