@@ -3,19 +3,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "CharacterTypes.h"
 #include "SlashCharacter.generated.h"
 
 class UCameraComponent;
 class USpringArmComponent;
 class UGroomComponent;
 class AItem;
-
-enum class ECharacterState
-{
-	ECS_Unequipped,
-	ECS_EquippedOneHandedWeapon,
-	ECS_EquippedTwoHandedWeapon
-};
 
 UCLASS()
 class SLASHER_API ASlashCharacter : public ACharacter
@@ -38,7 +32,7 @@ protected:
 	
 private:
 	
-	ECharacterState State = ECharacterState::ECS_Unequipped;
+	ECharacterState CharacterState = ECharacterState::ECS_Unequipped;
 	
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* CameraBoom;
@@ -57,5 +51,6 @@ private:
 	
 public: 
 	FORCEINLINE void SetOverlappingItem(AItem* Item) {OverlappingItem = Item;}
+	FORCEINLINE ECharacterState GetCharacterState() const {return CharacterState;}
 	
 };
