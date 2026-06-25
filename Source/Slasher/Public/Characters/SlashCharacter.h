@@ -10,6 +10,13 @@ class USpringArmComponent;
 class UGroomComponent;
 class AItem;
 
+enum class ECharacterState
+{
+	ECS_Unequipped,
+	ECS_EquippedOneHandedWeapon,
+	ECS_EquippedTwoHandedWeapon
+};
+
 UCLASS()
 class SLASHER_API ASlashCharacter : public ACharacter
 {
@@ -30,6 +37,9 @@ protected:
 	void EKeyPressed();
 	
 private:
+	
+	ECharacterState State = ECharacterState::ECS_Unequipped;
+	
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* CameraBoom;
 	
