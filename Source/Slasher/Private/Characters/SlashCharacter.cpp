@@ -129,6 +129,16 @@ void ASlashCharacter::Attack()
 	}
 }
 
+void ASlashCharacter::Dance()
+{
+	
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if (AnimInstance && DanceMontage && ActionState == EActionState::EAS_Unoccupied)
+	{
+		AnimInstance->Montage_Play(DanceMontage);
+	}
+}
+
 bool ASlashCharacter::CanAttack()
 {
 	return ActionState == EActionState::EAS_Unoccupied && 
@@ -149,7 +159,8 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAxis(FName("LookUp"), this, &ASlashCharacter::LookUp);
 	PlayerInputComponent->BindAction(FName("Attack"), IE_Pressed, this, &ASlashCharacter::Attack);
 	PlayerInputComponent->BindAction(FName("Equip"), IE_Pressed, this, &ASlashCharacter::EKeyPressed);
-	
+	PlayerInputComponent->BindAction(FName("Dance"), IE_Pressed, this, &ASlashCharacter::Dance);
+
 	PlayerInputComponent->BindAction(FName("Jump"), IE_Pressed, this, &ASlashCharacter::Jump);
 
 }

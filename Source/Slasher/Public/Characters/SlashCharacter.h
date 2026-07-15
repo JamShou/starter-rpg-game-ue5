@@ -35,6 +35,7 @@ protected:
 	void LookUp(float Value);
 	void EKeyPressed();
 	void Attack();
+	void Dance();
 
 	/**
 	* CallBack for Input
@@ -72,6 +73,9 @@ private:
 	 */
 	UPROPERTY(EditDefaultsOnly, Category = Montages)
 	UAnimMontage* AttackMontage;
+
+	UPROPERTY(EditDefaultsOnly, Category = Montages)
+	UAnimMontage* DanceMontage;
 	
 public: 
 	FORCEINLINE void SetOverlappingItem(AItem* Item) {OverlappingItem = Item;}
