@@ -36,6 +36,7 @@ protected:
 	void EKeyPressed();
 	void Attack();
 	void Dance();
+	void StopDanceMontage();
 
 	/**
 	* CallBack for Input

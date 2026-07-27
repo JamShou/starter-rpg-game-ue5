@@ -19,20 +19,20 @@ ASlashCharacter::ASlashCharacter()
 
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f);
-	
+
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(GetRootComponent());
 	CameraBoom->TargetArmLength = 300.f;
 
 	ViewCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("ViewCamera"));
 	ViewCamera->SetupAttachment(CameraBoom);
-	
+
 	//Groom Components
 	Hair = CreateDefaultSubobject<UGroomComponent>(TEXT("Hair"));
 	Hair->SetupAttachment(GetMesh());
 	Hair->AttachmentName = FString(TEXT("head"));
-	
-	Eyebrows=  CreateDefaultSubobject<UGroomComponent>(TEXT("Eyebrows"));
+
+	Eyebrows = CreateDefaultSubobject<UGroomComponent>(TEXT("Eyebrows"));
 	Eyebrows->SetupAttachment(GetMesh());
 	Eyebrows->AttachmentName = FString(TEXT("head"));
 }
@@ -46,6 +46,8 @@ void ASlashCharacter::MoveForward(float Value)
 {
 	if (Controller && (Value != 0.f))
 	{
+		StopDanceMontage();
+
 		//Find out which way is forward
 		const FRotator ControlRotation = GetControlRotation();
 		const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
@@ -58,12 +60,13 @@ void ASlashCharacter::MoveRight(float Value)
 {
 	if (Controller && (Value != 0.f))
 	{
+		StopDanceMontage();
+
 		//Find out which way is Right
 		const FRotator ControlRotation = GetControlRotation();
 		const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		AddMovementInput(Direction, Value);
-
 	}
 }
 
@@ -80,7 +83,7 @@ void ASlashCharacter::LookUp(float Value)
 void ASlashCharacter::EKeyPressed()
 {
 	AWeapon* OverlappingWeapon = Cast<AWeapon>(OverlappingItem);
-	
+
 	if (OverlappingWeapon)
 	{
 		OverlappingWeapon->Equip(GetMesh(), FName("RightHandSocket"));
@@ -94,7 +97,7 @@ void ASlashCharacter::PlayAttackMontage()
 	if (AnimInstance && AttackMontage)
 	{
 		AnimInstance->Montage_Play(AttackMontage, 1.5f);
-		
+
 		// Random Attack Montage Start
 		// int32 Selection = FMath::RandRange(0,1);
 		// FName SectionName = FName();
@@ -131,18 +134,29 @@ void ASlashCharacter::Attack()
 
 void ASlashCharacter::Dance()
 {
-	
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
-	if (AnimInstance && DanceMontage && ActionState == EActionState::EAS_Unoccupied)
+	if (CharacterState == ECharacterState::ECS_Unequipped)
 	{
-		AnimInstance->Montage_Play(DanceMontage);
+		UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+		if (AnimInstance && DanceMontage && ActionState == EActionState::EAS_Unoccupied)
+		{
+			AnimInstance->Montage_Play(DanceMontage);
+		}
+	}
+}
+
+void ASlashCharacter::StopDanceMontage()
+{
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if (AnimInstance && DanceMontage && AnimInstance->Montage_IsPlaying(DanceMontage))
+	{
+		StopAnimMontage(DanceMontage);
 	}
 }
 
 bool ASlashCharacter::CanAttack()
 {
-	return ActionState == EActionState::EAS_Unoccupied && 
-			CharacterState != ECharacterState::ECS_Unequipped;
+	return ActionState == EActionState::EAS_Unoccupied &&
+		CharacterState != ECharacterState::ECS_Unequipped;
 }
 
 void ASlashCharacter::Tick(float DeltaTime)
@@ -162,5 +176,4 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	PlayerInputComponent->BindAction(FName("Dance"), IE_Pressed, this, &ASlashCharacter::Dance);
 
 	PlayerInputComponent->BindAction(FName("Jump"), IE_Pressed, this, &ASlashCharacter::Jump);
-
 }
